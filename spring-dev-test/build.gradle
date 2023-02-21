@@ -10,9 +10,25 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile(testFixtures(project(":spring-aop")))
+    testCompile(testFixtures(project(":spring-beans")))
+    testCompile(testFixtures(project(":spring-core")))
+    testCompile("io.projectreactor:reactor-core")
+    testCompile("org.codehaus.groovy:groovy-jsr223")
+    testCompile("org.codehaus.groovy:groovy-test")
+    testCompile("org.codehaus.groovy:groovy-xml")
+    testCompile("org.apache.commons:commons-pool2")
+    testCompile("org.awaitility:awaitility")
+    testCompile("javax.inject:javax.inject-tck")
+    testRuntime("javax.xml.bind:jaxb-api")
+    testRuntime("org.glassfish:javax.el")
+    // Substitute for javax.management:jmxremote_optional:1.0.1_04 (not available on Maven Central)
+    testRuntime("org.glassfish.external:opendmk_jmxremote_optional_jar")
+    testRuntime("org.javamoney:moneta")
+    testRuntime("org.junit.vintage:junit-vintage-engine") // for @Inject TCK
+    testFixturesApi("org.junit.jupiter:junit-jupiter-api")
+    testFixturesImplementation(testFixtures(project(":spring-beans")))
+    testFixturesImplementation("com.google.code.findbugs:jsr305")
     // spring 核心容器
     compile(project(":spring-context"))
 }
