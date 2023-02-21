@@ -48,6 +48,7 @@ class ClassPathResourceTests {
 
 	@Test
 	void stringConstructorRaisesExceptionWithFullyQualifiedPath() {
+		ClassPathResource classPathResource = new ClassPathResource(FQ_RESOURCE_PATH);
 		assertExceptionContainsFullyQualifiedPath(new ClassPathResource(FQ_RESOURCE_PATH));
 	}
 
