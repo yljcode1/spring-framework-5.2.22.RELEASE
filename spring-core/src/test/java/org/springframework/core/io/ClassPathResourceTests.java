@@ -48,7 +48,7 @@ class ClassPathResourceTests {
 
 	@Test
 	void stringConstructorRaisesExceptionWithFullyQualifiedPath() {
-		ClassPathResource classPathResource = new ClassPathResource(FQ_RESOURCE_PATH);
+		Resource resource = new ClassPathResource(FQ_RESOURCE_PATH);
 		assertExceptionContainsFullyQualifiedPath(new ClassPathResource(FQ_RESOURCE_PATH));
 	}
 
@@ -132,8 +132,8 @@ class ClassPathResourceTests {
 
 	private void assertExceptionContainsFullyQualifiedPath(ClassPathResource resource) {
 		assertThatExceptionOfType(FileNotFoundException.class).isThrownBy(
-				resource::getInputStream)
-			.withMessageContaining(FQ_RESOURCE_PATH);
+						resource::getInputStream)
+				.withMessageContaining(FQ_RESOURCE_PATH);
 	}
 
 }
