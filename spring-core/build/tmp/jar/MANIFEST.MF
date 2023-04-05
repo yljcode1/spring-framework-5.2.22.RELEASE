@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: spring-core
-Implementation-Version: 5.2.22.RELEASE
-Automatic-Module-Name: spring.core
-Created-By: 11.0.18 (Oracle Corporation)
-

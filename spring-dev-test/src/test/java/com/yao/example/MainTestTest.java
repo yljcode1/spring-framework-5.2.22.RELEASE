@@ -1,7 +1,6 @@
 package com.yao.example;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.support.BeanDefinitionReader;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
@@ -31,4 +30,5 @@ class MainTestTest {
 		System.out.println(user.getName());
 
 	}
+
 }

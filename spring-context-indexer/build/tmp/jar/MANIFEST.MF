@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: spring-context-indexer
-Implementation-Version: 5.2.22.RELEASE
-Automatic-Module-Name: spring.context.indexer
-Created-By: 11.0.18 (Oracle Corporation)
-

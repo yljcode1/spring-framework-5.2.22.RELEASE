@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: spring-aop
-Implementation-Version: 5.2.22.RELEASE
-Automatic-Module-Name: spring.aop
-Created-By: 11.0.18 (Oracle Corporation)
-
