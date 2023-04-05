@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.projectlombok:lombok:1.18.26'
     testCompile(testFixtures(project(":spring-aop")))
     testCompile(testFixtures(project(":spring-beans")))
     testCompile(testFixtures(project(":spring-core")))
