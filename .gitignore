@@ -17,7 +17,7 @@ target/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-
+.gradle
 ### IntelliJ IDEA ###
 .idea
 *.iws
