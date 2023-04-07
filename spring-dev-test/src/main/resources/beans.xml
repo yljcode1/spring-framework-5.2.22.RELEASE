@@ -3,8 +3,14 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean class="com.yao.example.Person" id="person">
-		<property name="name" value="mobini"/>
-	</bean>
+	<beans>
+		<bean class="com.yao.example.Person" id="person">
+			<property name="name" value="mobini"/>
+		</bean>
+		<bean class="com.yao.example.bean.MyTestBean" id="myTestBean">
+
+		</bean>
+	</beans>
+
 
 </beans>

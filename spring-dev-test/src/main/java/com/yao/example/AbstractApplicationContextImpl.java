@@ -13,6 +13,7 @@ public class AbstractApplicationContextImpl extends ClassPathXmlApplicationConte
 		super(parent);
 	}
 
+	// 继承AbstractXmlApplicationContext实现的子类可以重写initPropertySources方法，可以在启动时候设置一些属性
 	@Override
 	protected void initPropertySources() {
 		logger.info("---在refresh方法里面尝试重写initPropertySources()方法");
