@@ -27,5 +27,4 @@ public enum CustomEnum {
 	public String toString() {
 		return "CustomEnum: " + name();
 	}
-
 }

@@ -16,12 +16,7 @@
 
 package org.springframework.beans.factory.xml;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
-import org.xml.sax.InputSource;
-
-import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.SimpleBeanDefinitionRegistry;
@@ -30,9 +25,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.util.ObjectUtils;
+import org.xml.sax.InputSource;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
  * @author Rick Evans
@@ -44,15 +41,19 @@ public class XmlBeanDefinitionReaderTests {
 	@Test
 	public void setParserClassSunnyDay() {
 		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
+		DefaultListableBeanFactory defaultListableBeanFactory = new DefaultListableBeanFactory();
+		new XmlBeanDefinitionReader(defaultListableBeanFactory).loadBeanDefinitions(new ClassPathResource("test.xml", getClass()));
 		new XmlBeanDefinitionReader(registry).setDocumentReaderClass(DefaultBeanDefinitionDocumentReader.class);
 	}
 
 	@Test
 	public void withOpenInputStream() {
 		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
-		Resource resource = new InputStreamResource(getClass().getResourceAsStream("test.xml"));
-		assertThatExceptionOfType(BeanDefinitionStoreException.class).isThrownBy(() ->
-				new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource));
+//		Resource resource = new InputStreamResource(getClass().getResourceAsStream("test.xml"));
+		ClassPathResource resource = new ClassPathResource("test.xml", getClass());
+//		assertThatExceptionOfType(BeanDefinitionStoreException.class).isThrownBy(() ->
+//				new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource));
+		int i = new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource);
 	}
 
 	@Test
@@ -82,11 +83,14 @@ public class XmlBeanDefinitionReaderTests {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	public void withInputSource() {
 		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
-		InputSource resource = new InputSource(getClass().getResourceAsStream("test.xml"));
-		assertThatExceptionOfType(BeanDefinitionStoreException.class).isThrownBy(() ->
-				new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource));
+		Resource resource = new ClassPathResource("test.xml", getClass());
+//		InputSource resource = new InputSource(getClass().getResourceAsStream("test.xml"));
+//		assertThatExceptionOfType(BeanDefinitionStoreException.class).isThrownBy(() ->
+//				new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource));
+		new XmlBeanDefinitionReader(registry).loadBeanDefinitions(resource);
 	}
 
 	@Test

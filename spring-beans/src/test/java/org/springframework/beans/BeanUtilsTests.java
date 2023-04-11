@@ -16,6 +16,18 @@
 
 package org.springframework.beans;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.testfixture.beans.DerivedTestBean;
+import org.springframework.beans.testfixture.beans.ITestBean;
+import org.springframework.beans.testfixture.beans.TestBean;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceEditor;
+import org.springframework.lang.Nullable;
+
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Constructor;
@@ -28,22 +40,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.beans.testfixture.beans.DerivedTestBean;
-import org.springframework.beans.testfixture.beans.ITestBean;
-import org.springframework.beans.testfixture.beans.TestBean;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceEditor;
-import org.springframework.lang.Nullable;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 /**
@@ -62,6 +59,8 @@ class BeanUtilsTests {
 	void testInstantiateClassGivenInterface() {
 		assertThatExceptionOfType(FatalBeanException.class).isThrownBy(() ->
 				BeanUtils.instantiateClass(List.class));
+		// 实例化一个对象
+		TestBean testBean = BeanUtils.instantiateClass(TestBean.class);
 	}
 
 	@Test

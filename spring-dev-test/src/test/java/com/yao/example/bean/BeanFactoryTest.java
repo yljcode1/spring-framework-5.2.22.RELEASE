@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BeanFactoryTest {
 	@Test
 	public void testSimpleBean() {
-
 		XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
 		MyTestBean myTestBean = xmlBeanFactory.getBean("myTestBean", MyTestBean.class);
 		assertEquals("zhangSan", myTestBean.getName());
