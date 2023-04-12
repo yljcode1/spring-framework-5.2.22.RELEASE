@@ -16,13 +16,14 @@
 
 package org.springframework.beans.factory.support;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.testfixture.beans.TestBean;
+import org.springframework.util.ReflectionUtils;
+
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.jupiter.api.Test;
-
-import org.springframework.util.ReflectionUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,6 +38,12 @@ public class AutowireUtilsTests {
 
 	@Test
 	public void genericMethodReturnTypes() {
+		Method haveBirthday = ReflectionUtils.findMethod(TestBean.class, "haveBirthday");
+		try {
+			haveBirthday.invoke(TestBean.class.newInstance());
+		} catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
+			throw new RuntimeException(e);
+		}
 		Method notParameterized = ReflectionUtils.findMethod(MyTypeWithMethods.class, "notParameterized");
 		Object actual = AutowireUtils.resolveReturnTypeForFactoryMethod(notParameterized, new Object[0], getClass().getClassLoader());
 		assertThat(actual).isEqualTo(String.class);

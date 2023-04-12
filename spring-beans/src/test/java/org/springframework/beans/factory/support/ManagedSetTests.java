@@ -16,13 +16,11 @@
 
 package org.springframework.beans.factory.support;
 
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
+import java.util.Set;
+
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author Rick Evans
@@ -35,6 +33,7 @@ public class ManagedSetTests {
 	@Test
 	public void mergeSunnyDay() {
 		ManagedSet parent = new ManagedSet();
+		parent.setMergeEnabled(false);
 		parent.add("one");
 		parent.add("two");
 		ManagedSet child = new ManagedSet();

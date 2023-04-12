@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.support.BeanDefinitionReader;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
@@ -26,6 +27,9 @@ class MainTestTest {
 		beanDefinitionReader.loadBeanDefinitions(resource);
 		// 从工厂中获取 bean
 		Person user = (Person) defaultListableBeanFactory.getBean("person");
+		ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("beans.xml");
+		classPathXmlApplicationContext.getBean("person");
+
 
 		System.out.println(user.getName());
 

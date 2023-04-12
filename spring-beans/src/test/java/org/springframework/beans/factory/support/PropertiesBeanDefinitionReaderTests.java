@@ -16,6 +16,7 @@
 
 package org.springframework.beans.factory.support;
 
+import groovy.util.logging.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.testfixture.beans.TestBean;
@@ -26,12 +27,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Rob Harrop
  */
+@Slf4j
 public class PropertiesBeanDefinitionReaderTests {
 
 	private final DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
+	// 读取Properties配置文件
 	private final PropertiesBeanDefinitionReader reader = new PropertiesBeanDefinitionReader(this.beanFactory);
 
+	@Test
+	public void withSimpleRead() {
+		// read 读取Resource
+		this.reader.loadBeanDefinitions(new ClassPathResource("simpleConstructorArg.properties", getClass()));
+		TestBean testBean = (TestBean) beanFactory.getBean("testBean");
+	}
 
 	@Test
 	public void withSimpleConstructorArg() {
