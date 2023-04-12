@@ -22,7 +22,6 @@ import org.springframework.core.testfixture.EnabledForTestGroups;
 import org.springframework.tests.sample.objects.TestObject;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.rmi.ConnectException;
@@ -30,6 +29,7 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -723,13 +723,9 @@ class ReflectionUtilsTests {
 	@Test
 	public void TestEnumReflectionUtils() {
 		User user = new User();
-		Arrays.stream(UserMethodForEach.values()).forEach(userMethodForEach -> {
-			Method method = ReflectionUtils.findMethod(User.class, userMethodForEach.getUserMethodEnName());
-			try {
-				method.invoke(user);
-			} catch (IllegalAccessException | InvocationTargetException e) {
-				throw new RuntimeException(e);
-			}
+		Method[] declaredMethods = Arrays.stream(ReflectionUtils.getDeclaredMethods(User.class)).filter(method -> method.getName().startsWith("say")).toArray(Method[]::new);
+		Arrays.stream(declaredMethods).forEach(method -> {
+			ReflectionUtils.invokeMethod(Objects.requireNonNull(ReflectionUtils.findMethod(User.class,method.getName())), user);
 		});
 	}
 }
